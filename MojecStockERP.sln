@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32510.428
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MojecStockERP", "MojecStockERP\MojecStockERP.csproj", "{801312D4-848B-4994-A148-943F33259F1E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{801312D4-848B-4994-A148-943F33259F1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{801312D4-848B-4994-A148-943F33259F1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{801312D4-848B-4994-A148-943F33259F1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{801312D4-848B-4994-A148-943F33259F1E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5E3E8EFE-1EBD-42AA-B429-558C5C571907}
+	EndGlobalSection
+EndGlobal

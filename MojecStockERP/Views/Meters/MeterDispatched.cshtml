@@ -1,0 +1,76 @@
+﻿@model IEnumerable<MojecStockERP.Models.MetersDispatched>
+@{
+    ViewBag.Title = "MeterDispatched";
+}
+
+
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Dispatched Meters</h1>
+
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Dispatched Meters</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead class="text-capitalize">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.MeterNo)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.MeterType)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Model)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Version)
+                            </th>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.DateOfDispatch)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Partners)
+                            </th>
+                        </tr>
+                    </thead>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MeterNo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MeterType)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Model)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Version)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateOfDispatch)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Partners)
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
