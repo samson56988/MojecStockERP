@@ -123,6 +123,7 @@
     <Compile Include="Config\StoreConnection.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
+    <Compile Include="Controllers\BoardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InstallationController.cs" />
     <Compile Include="Controllers\MetersController.cs" />
@@ -2001,6 +2002,7 @@
     <Content Include="assets\vendor\fontawesome-free\webfonts\fa-solid-900.woff2" />
     <Content Include="assets\vendor\jquery\jquery.min.map" />
     <Content Include="assets\vendor\jquery\jquery.slim.min.map" />
+    <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2037,10 +2039,14 @@
     <Content Include="Views\Home\Admin.cshtml" />
     <Content Include="Views\Admin\AddUser.cshtml" />
     <Content Include="Views\Admin\Users.cshtml" />
+    <Content Include="Views\Home\Home.cshtml" />
+    <Content Include="Views\Shared\BoardLayoutPage.cshtml" />
+    <Content Include="Views\Home\Board.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="excelfolder\" />
+    <Folder Include="Views\Board\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

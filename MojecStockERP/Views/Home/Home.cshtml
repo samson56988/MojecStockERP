@@ -3,6 +3,10 @@
     Layout = null;
 }
 
+@{
+    Layout = null;
+}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,6 +34,8 @@
 
     <div class="container">
 
+        <br />
+        <br />
         <!-- Outer Row -->
         <div class="row justify-content-center">
 
@@ -43,33 +49,13 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Login</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Stock Management System</h1>
                                     </div>
                                     <form class="user" action="Login" method="post">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control form-control-user"
-                                                   id="exampleInputEmail" aria-describedby="emailHelp"
-                                                   placeholder="Enter Username" name="Username">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="password" class="form-control form-control-user"
-                                                   id="exampleInputPassword" placeholder="Password" name="Password">
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                <label class="custom-control-label" for="customCheck">
-                                                    Remember
-                                                    Me
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary btn-user btn-block">
+                                        <a href="@Url.Action("Login", "Authentication")" class="btn btn-primary btn-user btn-block">
                                             Login
-                                        </button>
-
-                                        <label style="color:red">@ViewBag.Error</label>
-                                        <hr>                                      
+                                        </a>
+                                        <hr>
                                     </form>
                                     <hr>
                                 </div>
@@ -97,3 +83,5 @@
 </body>
 
 </html>
+
+

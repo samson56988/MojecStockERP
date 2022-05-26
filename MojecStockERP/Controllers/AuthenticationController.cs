@@ -65,7 +65,7 @@ namespace MojecStockERP.Controllers
             }
             else
             {
-                
+                ViewBag.Error = "Invalid Login Details";
             }
      
             return View();

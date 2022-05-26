@@ -24,33 +24,41 @@ namespace MojecStockERP.Controllers
         [HttpPost]
         public ActionResult AddUser(UserLogin user)
         {
-            if(user.Password != user.Confirmpassword)
+            try
             {
-                TempData["delete"] = "Password do not match";
-            }
-            else
-            {
-                using (SqlConnection con = new SqlConnection(StoreConnection.GetConnection()))
+                if (user.Password != user.Confirmpassword)
                 {
-                    using (SqlCommand cmd = new SqlCommand("AddUsers", con))
-                    {
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@Fullname", user.Fullname);
-                        cmd.Parameters.AddWithValue("@Username", user.Username);
-                        cmd.Parameters.AddWithValue("@Password", user.Password);
-                        cmd.Parameters.AddWithValue("@Role", user.Role);
-                        if (con.State != System.Data.ConnectionState.Open)
-
-                            con.Open();
-                        cmd.ExecuteNonQuery();
-                    }
-
-                    con.Close();
+                    TempData["delete"] = "Password do not match";
                 }
-                TempData["save"] = "User has been added to list";
-                return RedirectToAction("Users");
-            }
+                else
+                {
+                    using (SqlConnection con = new SqlConnection(StoreConnection.GetConnection()))
+                    {
+                        using (SqlCommand cmd = new SqlCommand("AddUsers", con))
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@Fullname", user.Fullname);
+                            cmd.Parameters.AddWithValue("@Username", user.Username);
+                            cmd.Parameters.AddWithValue("@Password", user.Password);
+                            cmd.Parameters.AddWithValue("@Role", user.Role);
+                            if (con.State != System.Data.ConnectionState.Open)
 
+                                con.Open();
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        con.Close();
+                    }
+                    TempData["save"] = "User has been added to list";
+                    return RedirectToAction("Users");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                TempData["delete"] = "Error occured";
+            }
+           
 
             return View();
           

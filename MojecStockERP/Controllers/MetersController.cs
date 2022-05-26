@@ -42,32 +42,41 @@ namespace MojecStockERP.Controllers
         [HttpPost]
         public ActionResult MeterProductionUpload(HttpPostedFileBase file)
         {
-            string filename = Guid.NewGuid() + Path.GetExtension(file.FileName);
-            string filepath = "/excelfolder/" + filename;
-            file.SaveAs(Path.Combine(Server.MapPath("/excelfolder/"), filename));
-            string fullpath = Server.MapPath("/excelfolder/") + filename;
-            ExcelConn(fullpath);
-            string Query = string.Format("Select * from [{0}]", "Sheet1$");
-            OleDbCommand Ecom = new OleDbCommand(Query, Econ);
-            Econ.Open();
-            OleDbDataReader dr = Ecom.ExecuteReader();
-            DataSet ds = new DataSet();
-            OleDbDataAdapter oda = new OleDbDataAdapter(Query, Econ);
-            Econ.Close();
-            oda.Fill(ds);
-            DataTable dt = ds.Tables[0];
-            SqlBulkCopy objbulk = new SqlBulkCopy(con);
-            objbulk.DestinationTableName = "StockManagement_Tbl";
-            objbulk.ColumnMappings.Add("MeterNo", "MeterNo");
-            objbulk.ColumnMappings.Add("MeterType", "MeterType");
-            objbulk.ColumnMappings.Add("Model", "Model");
-            objbulk.ColumnMappings.Add("Version", "Version");
-            objbulk.ColumnMappings.Add("date", "DateofSupply");
-            objbulk.ColumnMappings.Add("Partners", "Partners");
-            con.Open();
-            objbulk.WriteToServer(dt);
-            con.Close();
-            TempData["save"] = "Upload successful";
+            try
+            {
+                string filename = Guid.NewGuid() + Path.GetExtension(file.FileName);
+                string filepath = "/excelfolder/" + filename;
+                file.SaveAs(Path.Combine(Server.MapPath("/excelfolder/"), filename));
+                string fullpath = Server.MapPath("/excelfolder/") + filename;
+                ExcelConn(fullpath);
+                string Query = string.Format("Select * from [{0}]", "Sheet1$");
+                OleDbCommand Ecom = new OleDbCommand(Query, Econ);
+                Econ.Open();
+                OleDbDataReader dr = Ecom.ExecuteReader();
+                DataSet ds = new DataSet();
+                OleDbDataAdapter oda = new OleDbDataAdapter(Query, Econ);
+                Econ.Close();
+                oda.Fill(ds);
+                DataTable dt = ds.Tables[0];
+                SqlBulkCopy objbulk = new SqlBulkCopy(con);
+                objbulk.DestinationTableName = "StockManagement_Tbl";
+                objbulk.ColumnMappings.Add("MeterNo", "MeterNo");
+                objbulk.ColumnMappings.Add("MeterType", "MeterType");
+                objbulk.ColumnMappings.Add("Model", "Model");
+                objbulk.ColumnMappings.Add("Version", "Version");
+                objbulk.ColumnMappings.Add("date", "DateofSupply");
+                objbulk.ColumnMappings.Add("Partners", "Partners");
+                con.Open();
+                objbulk.WriteToServer(dt);
+                con.Close();
+                TempData["save"] = "Upload successful";
+                return View();
+            }
+            catch(Exception ex)
+            {
+                TempData["delete"] = "Upload Failed";
+            }
+
             return View();
         }
 
@@ -85,32 +94,41 @@ namespace MojecStockERP.Controllers
         [HttpPost]
         public ActionResult MeterDispatchedUpload(HttpPostedFileBase file)
         {
-            string filename = Guid.NewGuid() + Path.GetExtension(file.FileName);
-            string filepath = "/excelfolder/" + filename;
-            file.SaveAs(Path.Combine(Server.MapPath("/excelfolder/"), filename));
-            string fullpath = Server.MapPath("/excelfolder/") + filename;
-            ExcelConn(fullpath);
-            string Query = string.Format("Select * from [{0}]", "Sheet1$");
-            OleDbCommand Ecom = new OleDbCommand(Query, Econ);
-            Econ.Open();
-            OleDbDataReader dr = Ecom.ExecuteReader();
-            DataSet ds = new DataSet();
-            OleDbDataAdapter oda = new OleDbDataAdapter(Query, Econ);
-            Econ.Close();
-            oda.Fill(ds);
-            DataTable dt = ds.Tables[0];
-            SqlBulkCopy objbulk = new SqlBulkCopy(con);
-            objbulk.DestinationTableName = "DispatchedMeters_Tbl";
-            objbulk.ColumnMappings.Add("MeterNo", "MeterNO");
-            objbulk.ColumnMappings.Add("MeterType", "MeterType");
-            objbulk.ColumnMappings.Add("Model", "Model");
-            objbulk.ColumnMappings.Add("Version", "Version");
-            objbulk.ColumnMappings.Add("date", "DateofDispatched");
-            objbulk.ColumnMappings.Add("Partners", "Partners");
-            con.Open();
-            objbulk.WriteToServer(dt);
-            con.Close();
-            TempData["save"] = "Upload successful";
+            try
+            {
+                string filename = Guid.NewGuid() + Path.GetExtension(file.FileName);
+                string filepath = "/excelfolder/" + filename;
+                file.SaveAs(Path.Combine(Server.MapPath("/excelfolder/"), filename));
+                string fullpath = Server.MapPath("/excelfolder/") + filename;
+                ExcelConn(fullpath);
+                string Query = string.Format("Select * from [{0}]", "Sheet1$");
+                OleDbCommand Ecom = new OleDbCommand(Query, Econ);
+                Econ.Open();
+                OleDbDataReader dr = Ecom.ExecuteReader();
+                DataSet ds = new DataSet();
+                OleDbDataAdapter oda = new OleDbDataAdapter(Query, Econ);
+                Econ.Close();
+                oda.Fill(ds);
+                DataTable dt = ds.Tables[0];
+                SqlBulkCopy objbulk = new SqlBulkCopy(con);
+                objbulk.DestinationTableName = "DispatchedMeters_Tbl";
+                objbulk.ColumnMappings.Add("MeterNo", "MeterNO");
+                objbulk.ColumnMappings.Add("MeterType", "MeterType");
+                objbulk.ColumnMappings.Add("Model", "Model");
+                objbulk.ColumnMappings.Add("Version", "Version");
+                objbulk.ColumnMappings.Add("date", "DateofDispatched");
+                objbulk.ColumnMappings.Add("Partners", "Partners");
+                con.Open();
+                objbulk.WriteToServer(dt);
+                con.Close();
+                TempData["save"] = "Upload successful";
+                return View();
+            }
+            catch(Exception ex)
+            {
+                TempData["delete"] = "Upload Failed";
+            }
+
             return View();
         }
 
@@ -153,27 +171,30 @@ namespace MojecStockERP.Controllers
             {
                 return RedirectToAction("Login", "Authentication");
             }
-            _dispatchedMeters = new List<MetersDispatched>();
-            using (SqlConnection con = new SqlConnection(StoreConnection.GetConnection()))
-            {
-                SqlCommand cmd = new SqlCommand("select * from DispatchedMeters_Tbl", con);
-                cmd.CommandType = System.Data.CommandType.Text;
-                con.Open();
-                SqlDataReader rdr = cmd.ExecuteReader();
-                while (rdr.Read())
+            
+                _dispatchedMeters = new List<MetersDispatched>();
+                using (SqlConnection con = new SqlConnection(StoreConnection.GetConnection()))
                 {
-                    MetersDispatched dispatched = new MetersDispatched();
-                    dispatched.MeterNo = rdr["MeterNO"].ToString();
-                    dispatched.MeterType = rdr["MeterType"].ToString();
-                    dispatched.Model = rdr["Model"].ToString();
-                    dispatched.Version = rdr["Version"].ToString();
-                    dispatched.DateOfDispatch = rdr["DateofDispatched"].ToString();
-                    dispatched.Partners = rdr["Partners"].ToString();
-                    _dispatchedMeters.Add(dispatched);
+                    SqlCommand cmd = new SqlCommand("select * from DispatchedMeters_Tbl", con);
+                    cmd.CommandType = System.Data.CommandType.Text;
+                    con.Open();
+                    SqlDataReader rdr = cmd.ExecuteReader();
+                    while (rdr.Read())
+                    {
+                        MetersDispatched dispatched = new MetersDispatched();
+                        dispatched.MeterNo = rdr["MeterNO"].ToString();
+                        dispatched.MeterType = rdr["MeterType"].ToString();
+                        dispatched.Model = rdr["Model"].ToString();
+                        dispatched.Version = rdr["Version"].ToString();
+                        dispatched.DateOfDispatch = rdr["DateofDispatched"].ToString();
+                        dispatched.Partners = rdr["Partners"].ToString();
+                        _dispatchedMeters.Add(dispatched);
+                    }
+                    rdr.Close();
                 }
-                rdr.Close();
-            }
-            return View(_dispatchedMeters);
+                return View(_dispatchedMeters);
+            
+           
         }
 
         
