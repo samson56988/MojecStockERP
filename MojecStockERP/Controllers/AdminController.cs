@@ -85,5 +85,10 @@ namespace MojecStockERP.Controllers
             }
             return View(_users);
         }
+
+        public ActionResult Allusers()
+        {
+            return View();
+        }
     }
 }
