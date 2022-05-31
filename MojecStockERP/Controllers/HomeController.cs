@@ -40,9 +40,6 @@ namespace MojecStockERP.Controllers
             ViewBag.AvailableMeters = r - r2;
             return View();
         }
-
-
-
         public ActionResult Admin()
         {
             string Username = (string)Session["Username"];

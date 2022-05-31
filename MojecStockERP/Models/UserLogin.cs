@@ -12,6 +12,7 @@ namespace MojecStockERP.Models
         public string Password { get; set;}
         public string Confirmpassword { get; set; }
         public string Role { get; set;}
+        public string Disco { get; set; }
 
     }
 }

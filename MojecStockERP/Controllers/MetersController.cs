@@ -27,7 +27,6 @@ namespace MojecStockERP.Controllers
             string constr = string.Format(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=""Excel 12.0 Xml;HDR=YES;""", FilePath);
             Econ = new OleDbConnection(constr);
         }
-
         public ActionResult MeterProductionUpload()
         {
             string Username = (string)Session["Username"];
@@ -38,7 +37,6 @@ namespace MojecStockERP.Controllers
             }
             return View();
         }
-
         [HttpPost]
         public ActionResult MeterProductionUpload(HttpPostedFileBase file)
         {
@@ -79,7 +77,6 @@ namespace MojecStockERP.Controllers
 
             return View();
         }
-
         public ActionResult MeterDispatchedUpload()
         {
             string Username = (string)Session["Username"];
@@ -90,7 +87,6 @@ namespace MojecStockERP.Controllers
             }
             return View();
         }
-
         [HttpPost]
         public ActionResult MeterDispatchedUpload(HttpPostedFileBase file)
         {
@@ -131,7 +127,6 @@ namespace MojecStockERP.Controllers
 
             return View();
         }
-
         public ActionResult Meter()
         {
             string Username = (string)Session["Username"];
@@ -162,7 +157,6 @@ namespace MojecStockERP.Controllers
             }
             return View(_producedMeters);
         }
-
         public ActionResult MeterDispatched()
         {
             string Username = (string)Session["Username"];
