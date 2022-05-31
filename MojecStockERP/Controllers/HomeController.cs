@@ -49,7 +49,7 @@ namespace MojecStockERP.Controllers
                 return RedirectToAction("Login", "Authentication");
             }
             con.Open();
-            SqlCommand cmd = new SqlCommand("select Count(*) from StockManagement_Tbl", con);
+            SqlCommand cmd = new SqlCommand("select Count(*) from Production_Tbl", con);
             int r = Convert.ToInt32(cmd.ExecuteScalar());
             ViewBag.TotalMeter = r;
 

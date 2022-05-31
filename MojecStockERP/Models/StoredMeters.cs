@@ -6,7 +6,7 @@ using System.Web;
 
 namespace MojecStockERP.Models
 {
-    public class MetersDispatched
+    public class StoredMeters
     {
         public int MeterID { get; set; }
         [Display(Name = "Meter No")]
@@ -19,9 +19,6 @@ namespace MojecStockERP.Models
         public string SoftwareVersion { get; set; }
         [Display(Name = "Hardware Version")]
         public string HardwareVersion { get; set; }
-        [Display(Name = "Dispatched Date")]
-        [DataType(DataType.Date)]
-        public string DateOfDispatch { get; set; }
         [Display(Name = "Partners")]
         public string Partners { get; set; }
         public string Disco { get; set; }

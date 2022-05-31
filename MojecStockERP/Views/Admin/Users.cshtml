@@ -30,6 +30,7 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.Role)
                             </th>
+                            <th></th>
                         </tr>
                     </thead>
                     @foreach (var item in Model)
@@ -43,6 +44,10 @@
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Role)
+                            </td>
+                            <td class="btn-group">
+                                @Html.ActionLink("Activate", "UpdateInstallation", new { id = item.UserID }, new { @class = "btn btn-primary" })
+                                @Html.ActionLink("Deactivate", "DeleteInstallation", new { id = item.UserID }, new { @class = "btn btn-danger" })
                             </td>
                         </tr>
                     }

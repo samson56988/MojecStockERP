@@ -14,7 +14,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MojecStockERP</RootNamespace>
     <AssemblyName>MojecStockERP</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -55,9 +55,9 @@
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
@@ -132,8 +132,10 @@
     </Compile>
     <Compile Include="Models\DiscoUser.cs" />
     <Compile Include="Models\Installation.cs" />
+    <Compile Include="Models\KYC.cs" />
     <Compile Include="Models\MetersDispatched.cs" />
     <Compile Include="Models\MetersProduced.cs" />
+    <Compile Include="Models\StoredMeters.cs" />
     <Compile Include="Models\UserLogin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -1829,6 +1831,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Loginassets\app.js" />
+    <Content Include="Loginassets\img\log.svg" />
+    <Content Include="Loginassets\img\register.svg" />
+    <Content Include="Loginassets\style.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="assets\scss\navs\_global.scss" />
@@ -2043,9 +2049,11 @@
     <Content Include="Views\Home\Home.cshtml" />
     <Content Include="Views\Shared\BoardLayoutPage.cshtml" />
     <Content Include="Views\Home\Board.cshtml" />
-    <Content Include="Views\Admin\DiscoUser.cshtml" />
-    <Content Include="Views\Admin\AddDiscoUser.cshtml" />
-    <Content Include="Views\Admin\CreateDiscoUser.cshtml" />
+    <Content Include="Views\Admin\Installation.cshtml" />
+    <Content Include="Views\Admin\KYC.cshtml" />
+    <Content Include="Views\Admin\MeterProduced.cshtml" />
+    <Content Include="Views\Admin\MeterDispatched.cshtml" />
+    <Content Include="Views\Admin\StoredMeters.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

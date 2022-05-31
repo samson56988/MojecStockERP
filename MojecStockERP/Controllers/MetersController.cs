@@ -138,7 +138,7 @@ namespace MojecStockERP.Controllers
             _producedMeters = new List<MetersProduced>();
             using (SqlConnection con = new SqlConnection(StoreConnection.GetConnection()))
             {
-                SqlCommand cmd = new SqlCommand("select * from StockManagement_Tbl", con);
+                SqlCommand cmd = new SqlCommand("select * from Production_Tbl", con);
                 cmd.CommandType = System.Data.CommandType.Text;
                 con.Open();
                 SqlDataReader rdr = cmd.ExecuteReader();
@@ -148,7 +148,7 @@ namespace MojecStockERP.Controllers
                     produced.MeterNo = rdr["MeterNO"].ToString();
                     produced.MeterType = rdr["MeterType"].ToString();
                     produced.Model = rdr["Model"].ToString();
-                    produced.Version = rdr["Version"].ToString();
+                    produced.SGC = rdr["SGC"].ToString();
                     produced.DateOfSupply = rdr["DateofSupply"].ToString();
                     produced.Partners = rdr["Partners"].ToString();
                     _producedMeters.Add(produced);
@@ -179,7 +179,7 @@ namespace MojecStockERP.Controllers
                         dispatched.MeterNo = rdr["MeterNO"].ToString();
                         dispatched.MeterType = rdr["MeterType"].ToString();
                         dispatched.Model = rdr["Model"].ToString();
-                        dispatched.Version = rdr["Version"].ToString();
+                        dispatched.SoftwareVersion = rdr["Version"].ToString();
                         dispatched.DateOfDispatch = rdr["DateofDispatched"].ToString();
                         dispatched.Partners = rdr["Partners"].ToString();
                         _dispatchedMeters.Add(dispatched);

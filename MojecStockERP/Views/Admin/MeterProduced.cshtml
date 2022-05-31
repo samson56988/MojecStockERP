@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<MojecStockERP.Models.MetersProduced>
 @{
-    ViewBag.Title = "Meter";
+    ViewBag.Title = "MeterProduced";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
 
 
@@ -39,31 +40,36 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.Partners)
                             </th>
+                            <th></th>
                         </tr>
                     </thead>
                     @foreach (var item in Model)
                     {
-                        <tr>
+                <tr>
 
-                            <td>
-                                @Html.DisplayFor(modelItem => item.MeterNo)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.MeterType)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Model)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.SGC)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.DateOfSupply)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Partners)
-                            </td>
-                        </tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MeterNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MeterType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Model)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SGC)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateOfSupply)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Partners)
+                    </td>
+                    <td class="btn-group">
+                        @Html.ActionLink("Edit", "UpdateInstallation", new { id = item.MeterID }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Delete", "DeleteInstallation", new { id = item.MeterID }, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
                     }
 
                 </table>
@@ -72,3 +78,4 @@
     </div>
 
 </div>
+
