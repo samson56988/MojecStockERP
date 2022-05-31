@@ -92,10 +92,10 @@ namespace MojecStockERP.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateDiscoUser(DiscoUser disco)
+        public ActionResult CreateDiscoUser(UserLogin disco)
         {
                try
-                {
+                 { 
 
                     if (disco.Password != disco.Confirmpassword)
                     {
@@ -110,7 +110,7 @@ namespace MojecStockERP.Controllers
 
                                 disco.Role = "Disco";
                                 cmd.CommandType = CommandType.StoredProcedure;
-                                cmd.Parameters.AddWithValue("@Fullname", disco.Name);
+                                cmd.Parameters.AddWithValue("@Fullname", disco.Fullname);
                                 cmd.Parameters.AddWithValue("@Username", disco.Username);
                                 cmd.Parameters.AddWithValue("@Password", disco.Password);
                                 cmd.Parameters.AddWithValue("@Role", disco.Role);

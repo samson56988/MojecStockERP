@@ -16,7 +16,7 @@
             <!-- Circle Buttons -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Add User</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Add Disco User</h6>
                 </div>
                 <form class="needs-validation" novalidate="" action="AddUser" method="post">
                     <div class="card-body">
@@ -46,6 +46,54 @@
                                     <option>Admin</option>
                                     <option>Staff</option>
                                     <option>Board</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-icon-split">
+                            <span class="icon text-white-50">
+                            </span>
+                            <span class="text">Add</span>
+                        </button>
+
+                    </div>
+                </form>
+            </div>
+
+
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Add User</h6>
+                </div>
+                <form class="needs-validation" novalidate="" action="CreateDiscoUser" method="post">
+                    <div class="card-body">
+
+                        <div class="form-row">
+                            <div class="col-md-4 mb-3">
+                                <label for="validationCustom01">Fullname</label>
+                                <input type="text" class="form-control" id="validationCustom01" name="Fullname" required="">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="validationCustom01">Username</label>
+                                <input type="text" class="form-control" id="validationCustom01" name="Username" required="">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="validationCustom01">Password</label>
+                                <input type="password" class="form-control" id="validationCustom01" name="Password" required="">
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label for="validationCustom01">Confirm Password</label>
+                                <input type="password" class="form-control" id="validationCustom01" name="Confirmpassword" required="">
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label for="validationCustom01">Disco</label>
+                                <select class="form-control" name="Disco">
+                                    <option>IE</option>
+                                    <option>EKEDC</option>
+                                    <option>AEDC</option>
+                                    <option>Power Geniene</option>
                                 </select>
                             </div>
                         </div>
