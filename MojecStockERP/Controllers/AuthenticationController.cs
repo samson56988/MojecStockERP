@@ -33,7 +33,7 @@ namespace MojecStockERP.Controllers
             connectionString();
             con.Open();
             com.Connection = con;
-            com.CommandText = "Select * from UserLogin_Tbl where UserName = '" + login.Username + "'and Password = '" + login.Password + "'";
+            com.CommandText = "Select * from UserLogin_Tbl where UserName = '" + login.Username + "'and Password = '" + login.Password + "' and Active ='Active'";
             dr = com.ExecuteReader();
             if (dr.HasRows)
             {
@@ -41,6 +41,7 @@ namespace MojecStockERP.Controllers
                 {
                     login.Username = dr["Username"].ToString();
                     login.Role = dr["Role"].ToString();
+                    login.Disco = dr["Disco"].ToString();
                     
                 }
 
@@ -48,15 +49,29 @@ namespace MojecStockERP.Controllers
                 {
                     FormsAuthentication.SetAuthCookie(login.Username, true);
                     Session["Username"] = login.Username.ToString();
-                    return RedirectToAction("Admin", "Home");
+                    return RedirectToAction("Admin", "Admin");
                 }
-                if(login.Role == "Staff")
+                if(login.Role == "Disco")
                 {
                     FormsAuthentication.SetAuthCookie(login.Username, true);
                     Session["Username"] = login.Username.ToString();
-                    return RedirectToAction("Index", "Home");
+                    FormsAuthentication.SetAuthCookie(login.Disco, true);
+                    Session["Disco"] = login.Disco.ToString();
+                    return RedirectToAction("Dashboard", "Installation");
                 }
-                if(login.Role == "Board")
+                if (login.Role == "Store")
+                {
+                    FormsAuthentication.SetAuthCookie(login.Username, true);
+                    Session["Username"] = login.Username.ToString();
+                    return RedirectToAction("StoreDashboard", "Store");
+                }
+                if (login.Role == "Factory")
+                {
+                    FormsAuthentication.SetAuthCookie(login.Username, true);
+                    Session["Username"] = login.Username.ToString();
+                    return RedirectToAction("FactoryDashboard", "Factory");
+                }
+                if (login.Role == "Board")
                 {
                     FormsAuthentication.SetAuthCookie(login.Username, true);
                     Session["Username"] = login.Username.ToString();

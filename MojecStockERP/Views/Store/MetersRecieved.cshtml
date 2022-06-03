@@ -1,20 +1,19 @@
-﻿@model IEnumerable<MojecStockERP.Models.MetersProduced>
+﻿@model IEnumerable<MojecStockERP.Models.StoredMeters>
 @{
-    ViewBag.Title = "MeterProduced";
-    Layout = "~/Views/Shared/AdminLayout.cshtml";
+    ViewBag.Title = "MetersRecieved";
+    Layout = "~/Views/Shared/Store.cshtml";
 }
-
 
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Meter Production</h1>
+    <h1 class="h3 mb-2 text-gray-800">Recieved Meters</h1>
 
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Meters Produced</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Recieved Meters</h6>
         </div>
         <div class="card-body">
             @using (Html.BeginForm("DownloadReport", "MOJECIE", FormMethod.Post))
@@ -53,12 +52,11 @@
                             </th>
 
                             <th>
-                                @Html.DisplayNameFor(model => model.DateOfSupply)
+                                @Html.DisplayNameFor(model => model.Date)
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.Partners)
                             </th>
-                            <th></th>
                         </tr>
                     </thead>
                     @foreach (var item in Model)
@@ -78,14 +76,10 @@
                                 @Html.DisplayFor(modelItem => item.SGC)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.DateOfSupply)
+                                @Html.DisplayFor(modelItem => item.Date)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Partners)
-                            </td>
-                            <td class="btn-group">
-                                @Html.ActionLink("Edit", "UpdateMeterProduced", new { id = item.MeterID }, new { @class = "btn btn-primary" })
-                                @Html.ActionLink("Delete", "DeleteProducedMeter", new { id = item.MeterID }, new { @class = "btn btn-danger" })
                             </td>
                         </tr>
                     }
@@ -97,26 +91,3 @@
 
 </div>
 
-@section Scripts{
-    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
-    <script type="text/javascript">
-  $(function(){
-     var save = '@TempData["save"]'
-if(save!=null)
-{
- alertify.success(save);
-}
-var edit = '@TempData["edit"]'
-if(edit!='')
-{
-    alertify.success(edit);
-}
- var del = '@TempData["delete"]'
-if(del!='')
-{
-    alertify.error(del);
-}
- })
-    </script>
-
-}

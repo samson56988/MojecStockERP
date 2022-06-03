@@ -48,34 +48,34 @@
                     </thead>
                     @foreach (var item in Model)
                     {
-                <tr>
+                        <tr>
 
-                    <td>
-                        @Html.DisplayFor(modelItem => item.MeterNo)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.MeterType)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Model)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.SGC)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Partners)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.SoftwareVersion)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.HardwareVersion)
-                    </td>
-                    <td class="btn-group">
-                        @Html.ActionLink("Edit", "UpdateInstallation", new { id = item.MeterID }, new { @class = "btn btn-primary" })
-                        @Html.ActionLink("Delete", "DeleteInstallation", new { id = item.MeterID }, new { @class = "btn btn-danger" })
-                    </td>
-                </tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MeterNo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MeterType)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Model)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SGC)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Partners)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SoftwareVersion)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.HardwareVersion)
+                            </td>
+                            <td class="btn-group">
+                                @Html.ActionLink("Edit", "UpdateRecievedMeters", new { id = item.MeterID }, new { @class = "btn btn-primary" })
+                                @Html.ActionLink("Delete", "DeleteStoredMeters", new { id = item.MeterID }, new { @class = "btn btn-danger" })
+                            </td>
+                        </tr>
                     }
 
                 </table>
@@ -85,3 +85,26 @@
 
 </div>
 
+@section Scripts{
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <script type="text/javascript">
+  $(function(){
+     var save = '@TempData["save"]'
+if(save!=null)
+{
+ alertify.success(save);
+}
+var edit = '@TempData["edit"]'
+if(edit!='')
+{
+    alertify.success(edit);
+}
+ var del = '@TempData["delete"]'
+if(del!='')
+{
+    alertify.error(del);
+}
+ })
+    </script>
+
+}

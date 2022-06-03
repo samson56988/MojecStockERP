@@ -33,7 +33,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="@Url.Action("Index", "Home")">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="@Url.Action("Dashboard", "Installation")">
                 <div class="sidebar-brand-icon ">
                     <img src="https://mojectimeline.herokuapp.com/pics/mojec_logo.png" style="color:white;width:60px" alt="logo">
                 </div>
@@ -45,7 +45,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="@Url.Action("Index", "Home")">
+                <a class="nav-link" href="@Url.Action("Dashboard", "Installation")">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span>
                 </a>
@@ -56,7 +56,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Stock Management
+                Installation Management
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
@@ -64,14 +64,12 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                    aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Meters</span>
+                    <span>KYC</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="@Url.Action("MeterProductionUpload", "Meters")">Meter Production Upload</a>
-                        <a class="collapse-item" href="@Url.Action("MeterDispatchedUpload", "Meters")">Meter Dispatched Upload</a>
-                        <a class="collapse-item" href="@Url.Action("Meter", "Meters")">Meter Production</a>
-                        <a class="collapse-item" href="@Url.Action("MeterDispatched", "Meters")">Meter Dispatched</a>
+                        <a class="collapse-item" href="@Url.Action("UploadKYC", "Installation")">KYC Upload</a>
+                        <a class="collapse-item" href="@Url.Action("KYC", "Installation")">KYC</a>
                     </div>
                 </div>
             </li>

@@ -8,14 +8,34 @@
 
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">KYC</h1>
-
-
-    <!-- DataTales Example -->
+ <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">KYC</h6>
         </div>
         <div class="card-body">
+            @using (Html.BeginForm("DownloadReport", "MOJECIE", FormMethod.Post))
+            {
+                <div class="form-row mt-4">
+                    <div class="col-md-3 mb-3">
+                        <label for="validationCustom01">Date</label>
+                        <input type="date" class="form-control" id="validationCustom01" required="">
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="validationCustom01">Date</label>
+                        <input type="date" class="form-control" id="validationCustom01" required="">
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="validationCustom01">Disco</label>
+                        <input type="text" class="form-control" id="validationCustom01" required="">
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <br />
+                        <button type="submit" class="btn btn-outline-primary">Download</button>
+                    </div>
+                </div>
+
+            }
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead class="text-capitalize">
@@ -41,36 +61,57 @@
                     </thead>
                     @foreach (var item in Model)
                     {
-                <tr>
+                        <tr>
 
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DateShared)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CustomerName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ARN)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Disco)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.AdditionalComment)
-                    </td>
-                    <td class="btn-group">
-                        @Html.ActionLink("Edit", "UpdateInstallation", new { id = item.ARN }, new { @class = "btn btn-primary" })
-                        @Html.ActionLink("Delete", "DeleteInstallation", new { id = item.ARN }, new { @class = "btn btn-danger" })
-                    </td>
-                </tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateShared)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CustomerName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ARN)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Disco)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AdditionalComment)
+                            </td>
+                            <td class="btn-group">
+                                @Html.ActionLink("Edit", "UpdateKYC", new { id = item.ARN }, new { @class = "btn btn-primary" })
+                                @Html.ActionLink("Delete", "DeleteKYC", new { id = item.ARN }, new { @class = "btn btn-danger" })
+                            </td>
+                        </tr>
                     }
 
                 </table>
             </div>
         </div>
     </div>
-
 </div>
+@section Scripts{
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <script type="text/javascript">
+  $(function(){
+     var save = '@TempData["save"]'
+if(save!=null)
+{
+ alertify.success(save);
+}
+var edit = '@TempData["edit"]'
+if(edit!='')
+{
+    alertify.success(edit);
+}
+ var del = '@TempData["delete"]'
+if(del!='')
+{
+    alertify.error(del);
+}
+ })
+    </script>
 
+}
 
 

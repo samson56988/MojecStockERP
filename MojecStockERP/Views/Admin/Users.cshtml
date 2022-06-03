@@ -46,8 +46,8 @@
                                 @Html.DisplayFor(modelItem => item.Role)
                             </td>
                             <td class="btn-group">
-                                @Html.ActionLink("Activate", "UpdateInstallation", new { id = item.UserID }, new { @class = "btn btn-primary" })
-                                @Html.ActionLink("Deactivate", "DeleteInstallation", new { id = item.UserID }, new { @class = "btn btn-danger" })
+                                @Html.ActionLink("Activate", "ActivateUsers", new { id = item.UserID }, new { @class = "btn btn-primary" })
+                                @Html.ActionLink("Deactivate", "DeactivateUsers", new { id = item.UserID }, new { @class = "btn btn-danger" })
                             </td>
                         </tr>
                     }

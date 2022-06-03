@@ -124,9 +124,11 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\BoardController.cs" />
+    <Compile Include="Controllers\FactoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InstallationController.cs" />
     <Compile Include="Controllers\MetersController.cs" />
+    <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2054,6 +2056,24 @@
     <Content Include="Views\Admin\MeterProduced.cshtml" />
     <Content Include="Views\Admin\MeterDispatched.cshtml" />
     <Content Include="Views\Admin\StoredMeters.cshtml" />
+    <Content Include="Views\Admin\Admin.cshtml" />
+    <Content Include="Views\Installation\Dashboard.cshtml" />
+    <Content Include="Views\Installation\UploadKYC.cshtml" />
+    <Content Include="Views\Installation\KYC.cshtml" />
+    <Content Include="Views\Shared\Store.cshtml" />
+    <Content Include="Views\Store\UploadMetersRecieved.cshtml" />
+    <Content Include="Views\Store\MetersRecieved.cshtml" />
+    <Content Include="Views\Store\UploadDispatchedMeters.cshtml" />
+    <Content Include="Views\Store\DispatchedMeters.cshtml" />
+    <Content Include="Views\Store\StoreDashboard.cshtml" />
+    <Content Include="Views\Shared\_Factory.cshtml" />
+    <Content Include="Views\Factory\MetersProduced.cshtml" />
+    <Content Include="Views\Factory\UploadMetersProduced.cshtml" />
+    <Content Include="Views\Factory\FactoryDashboard.cshtml" />
+    <Content Include="Views\Admin\UpdateInstallation.cshtml" />
+    <Content Include="Views\Admin\UpdateKYC.cshtml" />
+    <Content Include="Views\Admin\UpdateMeterProduced.cshtml" />
+    <Content Include="Views\Admin\UpdateRecievedMeters.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -24,5 +24,6 @@ namespace MojecStockERP.Models
         public string Disco { get; set; }
         public string SGC { get; set; }
         public string TarrifIndex { get; set; }
+        public string Date { get; set; }
     }
 }
