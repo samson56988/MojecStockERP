@@ -24,12 +24,12 @@ namespace MojecStockERP.Controllers
         // GET: Admin
         public ActionResult Admin()
         {
-            //string Username = (string)Session["Username"];
+            string Username = (string)Session["Username"];
 
-            //if (string.IsNullOrEmpty(Convert.ToString(Session["Username"])))
-            //{
-            //    return RedirectToAction("Login", "Authentication");
-            //}
+            if (string.IsNullOrEmpty(Convert.ToString(Session["Username"])))
+            {
+                return RedirectToAction("Login", "Authentication");
+            }
             con.Open();
             SqlCommand cmd = new SqlCommand("select Count(*) from Production_Tbl", con);
             int r = Convert.ToInt32(cmd.ExecuteScalar());
@@ -45,7 +45,9 @@ namespace MojecStockERP.Controllers
 
             SqlCommand cmd7 = new SqlCommand("select Count(*) from StoreRecieved_Tbl", con);
             int r7 = Convert.ToInt32(cmd7.ExecuteScalar());
-            ViewBag.AvailableMeters = r7;
+            ViewBag.Store = r7;
+
+            ViewBag.Available = r - r2;
 
             
             return View();
@@ -366,6 +368,7 @@ namespace MojecStockERP.Controllers
                     meters.Model = rdr["Model"].ToString();
                     meters.Partners = rdr["Partners"].ToString();
                     meters.DateOfSupply = rdr["DateOfProduction"].ToString();
+                    meters.Disco = rdr["Disco"].ToString();
                     _meters.Add(meters);
                 }
                 rdr.Close();
@@ -400,7 +403,6 @@ namespace MojecStockERP.Controllers
             }
             return View(meter);
         }
-
         [HttpPost]
         public ActionResult UpdateMeterProduced(MetersProduced meters)
         {
@@ -430,7 +432,6 @@ namespace MojecStockERP.Controllers
             TempData["save"] = "Details Updated Successfully";
             return RedirectToAction("MeterProduced");
         }
-
         public ActionResult DeleteProducedMeter(int Id)
         {
             using (SqlConnection con = new SqlConnection(StoreConnection.GetConnection()))
@@ -446,7 +447,6 @@ namespace MojecStockERP.Controllers
             TempData["save"] = "Details Deleted Successfully";
             return RedirectToAction("MeterProduced");
         }
-
         public ActionResult UpdateRecievedMeters(int Id)
         {
             StoredMeters meter = new StoredMeters();
@@ -475,7 +475,6 @@ namespace MojecStockERP.Controllers
             }
             return View(meter);
         }
-
         [HttpPost]
         public ActionResult UpdateRecievedMeters(StoredMeters meters)
         {
@@ -505,7 +504,6 @@ namespace MojecStockERP.Controllers
             TempData["save"] = "Details Updated Successfully";
             return RedirectToAction("StoredMeters");
         }
-
         public ActionResult DeleteStoredMeters(int Id)
         {
             using (SqlConnection con = new SqlConnection(StoreConnection.GetConnection()))
@@ -521,7 +519,6 @@ namespace MojecStockERP.Controllers
             TempData["save"] = "Details Deleted Successfully";
             return RedirectToAction("StoredMeters");
         }
-
         public ActionResult MeterDispatched()
         {
             _dispatched = new List<MetersDispatched>();
@@ -534,6 +531,7 @@ namespace MojecStockERP.Controllers
                 while (rdr.Read())
                 {
                     MetersDispatched meters = new MetersDispatched();
+                    meters.MeterID =Convert.ToInt32(rdr["MeterID"].ToString());
                     meters.MeterNo = rdr["MeterNo"].ToString();
                     meters.MeterType = rdr["MeterType"].ToString();
                     meters.SGC = rdr["SGC"].ToString();
@@ -573,10 +571,62 @@ namespace MojecStockERP.Controllers
             }
             return View(_store);
         }
-
-        public ActionResult MetersRecieved(int Id)
+        public ActionResult UpdateMetersDispatched(string Id)
         {
-            return View();
+            MetersDispatched meter = new MetersDispatched();
+            using (SqlConnection con = new SqlConnection(StoreConnection.GetConnection()))
+            {
+                SqlCommand cmd = new SqlCommand("GetDispatchedByID", con);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@MeterID", Id);
+                con.Open();
+                SqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    meter.MeterID = Convert.ToInt32(rdr["MeterID"].ToString());
+                    meter.MeterNo = rdr["MeterNo"].ToString();
+                    meter.MeterType = rdr["MeterType"].ToString();
+                    meter.Model = rdr["Model"].ToString();
+                    meter.SoftwareVersion = rdr["SoftwareVersion"].ToString();
+                    meter.HardwareVersion = rdr["HardwareVersion"].ToString();
+                    meter.DateOfDispatch = rdr["DateofDispatched"].ToString();
+                    meter.Partners = rdr["Partners"].ToString();
+                    meter.SGC = rdr["SGC"].ToString();
+                    meter.TarrifIndex = rdr["TarrifIndex"].ToString();
+
+                }
+                rdr.Close();
+            }
+            return View(meter);
+        }
+        [HttpPost]
+        public ActionResult UpdateMetersDispatched(MetersDispatched meters)
+        {
+            using (SqlConnection con = new SqlConnection(StoreConnection.GetConnection()))
+            {
+                using (SqlCommand cmd = new SqlCommand("UpdateDispatchedTbl", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@MeterID", meters.MeterID);
+                    cmd.Parameters.AddWithValue("@MeterNo", meters.MeterNo);
+                    cmd.Parameters.AddWithValue("@MeterType", meters.MeterType);
+                    cmd.Parameters.AddWithValue("@Model", meters.Model);
+                    cmd.Parameters.AddWithValue("@SoftwareVersion", meters.SoftwareVersion);
+                    cmd.Parameters.AddWithValue("@HardwareVersion", meters.HardwareVersion);
+                    cmd.Parameters.AddWithValue("@DateofDispatched", meters.DateOfDispatch);
+                    cmd.Parameters.AddWithValue("@Partners", meters.Partners);
+                    cmd.Parameters.AddWithValue("@SGC", meters.SGC);
+                    cmd.Parameters.AddWithValue("@TarriffIndex", meters.TarrifIndex);
+                    if (con.State != System.Data.ConnectionState.Open)
+
+                        con.Open();
+                    cmd.ExecuteNonQuery();
+                }
+
+                con.Close();
+            }
+            TempData["save"] = "Details Updated Successfully";
+            return RedirectToAction("MeterDispatched");
         }
         public ActionResult ActivateUsers(int Id)
         {

@@ -9,9 +9,18 @@ namespace MojecStockERP.Controllers
     public class BoardController : Controller
     {
         // GET: Board
-        public ActionResult Index()
+        public ActionResult Dashboard()
         {
+            string Username = (string)Session["Username"];
+
+            if (string.IsNullOrEmpty(Convert.ToString(Session["Username"])))
+            {
+                return RedirectToAction("Login", "Authentication");
+            }
+
             return View();
         }
+
+       
     }
 }

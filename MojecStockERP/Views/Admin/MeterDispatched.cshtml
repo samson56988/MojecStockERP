@@ -93,7 +93,7 @@
                                 @Html.DisplayFor(modelItem => item.Disco)
                             </td>
                             <td class="btn-group">
-                                @Html.ActionLink("Edit", "UpdateInstallation", new { id = item.MeterID }, new { @class = "btn btn-primary" })
+                                @Html.ActionLink("Edit", "UpdateMetersDispatched", new { id = item.MeterID }, new { @class = "btn btn-primary" })
                                 @Html.ActionLink("Delete", "DeleteInstallation", new { id = item.MeterID }, new { @class = "btn btn-danger" })
                             </td>
                         </tr>
@@ -106,3 +106,26 @@
 
 </div>
 
+@section Scripts{
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <script type="text/javascript">
+  $(function(){
+     var save = '@TempData["save"]'
+if(save!=null)
+{
+ alertify.success(save);
+}
+var edit = '@TempData["edit"]'
+if(edit!='')
+{
+    alertify.success(edit);
+}
+ var del = '@TempData["delete"]'
+if(del!='')
+{
+    alertify.error(del);
+}
+ })
+    </script>
+
+}

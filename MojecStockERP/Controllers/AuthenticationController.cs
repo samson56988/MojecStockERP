@@ -75,7 +75,7 @@ namespace MojecStockERP.Controllers
                 {
                     FormsAuthentication.SetAuthCookie(login.Username, true);
                     Session["Username"] = login.Username.ToString();
-                    return RedirectToAction("Board", "Home");
+                    return RedirectToAction("Dashboard", "Board");
                 }
             }
             else

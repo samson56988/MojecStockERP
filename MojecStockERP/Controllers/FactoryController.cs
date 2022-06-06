@@ -83,6 +83,7 @@ namespace MojecStockERP.Controllers
                 objbulk.ColumnMappings.Add("Partners", "Partners");
                 objbulk.ColumnMappings.Add("SGC", "SGC");
                 objbulk.ColumnMappings.Add("TarrifIndex", "TarrifIndex");
+                objbulk.ColumnMappings.Add("Disco", "Disco");
                 con.Open();
                 objbulk.WriteToServer(dt);
                 con.Close();
@@ -121,6 +122,7 @@ namespace MojecStockERP.Controllers
                     produced.SGC = rdr["SGC"].ToString();
                     produced.DateOfSupply = rdr["DateofProduction"].ToString();
                     produced.Partners = rdr["Partners"].ToString();
+                    produced.Disco = rdr["Disco"].ToString();
                     _produced.Add(produced);
                 }
                 rdr.Close();
