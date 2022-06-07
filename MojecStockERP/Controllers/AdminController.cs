@@ -310,7 +310,6 @@ namespace MojecStockERP.Controllers
             TempData["save"] = "Details Updated Successfully";
             return RedirectToAction("KYC");
         }
-
         public ActionResult DeleteKYC(string Id)
         {
             using (SqlConnection con = new SqlConnection(StoreConnection.GetConnection()))
@@ -657,6 +656,15 @@ namespace MojecStockERP.Controllers
             }
             TempData["save"] = "User Deactivated Successfully";
             return RedirectToAction("Users");
+        }
+        public ActionResult DownloadInstallationcsv(string Date1, string Date2,string Disco)
+        {
+            
+            return Redirect("https://dataexportapp.azurewebsites.net/api/InstallationStock/Download?Date1=" + Date1 + "&&Date2=" + Date2 + "&&Disco=" + Disco);
+        }
+        public ActionResult DownloadProductioncsv(string date1, string date2, string disco)
+        {
+            return Redirect("https://dataexportapp.azurewebsites.net/api/InstallationStock/Download?Date1=" + date1 + "&&Date2=" + date2 + "&&Disco=" + disco);
         }
 
 
