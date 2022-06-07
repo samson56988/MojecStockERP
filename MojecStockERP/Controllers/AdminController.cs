@@ -18,8 +18,7 @@ namespace MojecStockERP.Controllers
         List<KYC> _Kyc = new List<KYC>();
         List<MetersProduced> _meters = new List<MetersProduced>();
         List<MetersDispatched> _dispatched = new List<MetersDispatched>();
-        List<StoredMeters> _store = new List<StoredMeters>();
-     
+        List<StoredMeters> _store = new List<StoredMeters>();    
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["StockManagementERP"].ConnectionString);
         // GET: Admin
         public ActionResult Admin()
@@ -210,24 +209,35 @@ namespace MojecStockERP.Controllers
         [HttpPost]
         public ActionResult UpdateInstallation(Installation install)
         {
-            using (SqlConnection con = new SqlConnection(StoreConnection.GetConnection()))
+            try 
             {
-                using (SqlCommand cmd = new SqlCommand("UpdateInstallationTbl", con))
+
+                using (SqlConnection con = new SqlConnection(StoreConnection.GetConnection()))
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@MeterNo", install.MeterNo);
-                    cmd.Parameters.AddWithValue("@MeterType", install.MeterType);
-                    cmd.Parameters.AddWithValue("@DateInstalled", install.DateInstalled);
-                    if (con.State != System.Data.ConnectionState.Open)
+                    using (SqlCommand cmd = new SqlCommand("UpdateInstallationTbl", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@MeterNo", install.MeterNo);
+                        cmd.Parameters.AddWithValue("@MeterType", install.MeterType);
+                        cmd.Parameters.AddWithValue("@DateInstalled", install.DateInstalled);
+                        if (con.State != System.Data.ConnectionState.Open)
 
-                        con.Open();
-                    cmd.ExecuteNonQuery();
+                            con.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    con.Close();
                 }
+                TempData["save"] = "Details Updated Successfully";
+                return RedirectToAction("Installation");
 
-                con.Close();
             }
-            TempData["save"] = "Details Updated Successfully";
-            return RedirectToAction("Installation");
+            catch(Exception ex)
+            {
+                TempData["delete"] = "Failed to update";
+            }
+
+            return View();
         }
         public ActionResult DeleteInstallation(string Id)
         {
@@ -310,7 +320,6 @@ namespace MojecStockERP.Controllers
             TempData["save"] = "Details Updated Successfully";
             return RedirectToAction("KYC");
         }
-
         public ActionResult DeleteKYC(string Id)
         {
             using (SqlConnection con = new SqlConnection(StoreConnection.GetConnection()))
@@ -406,31 +415,40 @@ namespace MojecStockERP.Controllers
         [HttpPost]
         public ActionResult UpdateMeterProduced(MetersProduced meters)
         {
-            using (SqlConnection con = new SqlConnection(StoreConnection.GetConnection()))
+            try 
             {
-                using (SqlCommand cmd = new SqlCommand("UpdateProductionTbl", con))
+                using (SqlConnection con = new SqlConnection(StoreConnection.GetConnection()))
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@MeterID", meters.MeterID);
-                    cmd.Parameters.AddWithValue("@MeterNo", meters.MeterNo);
-                    cmd.Parameters.AddWithValue("@MeterType", meters.MeterType);
-                    cmd.Parameters.AddWithValue("@Model", meters.Model);
-                    cmd.Parameters.AddWithValue("@SoftwareVersion", meters.SoftwareVersion);
-                    cmd.Parameters.AddWithValue("@HardwareVersion", meters.HardwareVersion);
-                    cmd.Parameters.AddWithValue("@DateOfProduction", meters.DateOfSupply);
-                    cmd.Parameters.AddWithValue("@Partners", meters.Partners);
-                    cmd.Parameters.AddWithValue("@SGC", meters.SGC);
-                    cmd.Parameters.AddWithValue("@TarriffIndex", meters.TarrifIndex);
-                    if (con.State != System.Data.ConnectionState.Open)
+                    using (SqlCommand cmd = new SqlCommand("UpdateProductionTbl", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@MeterID", meters.MeterID);
+                        cmd.Parameters.AddWithValue("@MeterNo", meters.MeterNo);
+                        cmd.Parameters.AddWithValue("@MeterType", meters.MeterType);
+                        cmd.Parameters.AddWithValue("@Model", meters.Model);
+                        cmd.Parameters.AddWithValue("@SoftwareVersion", meters.SoftwareVersion);
+                        cmd.Parameters.AddWithValue("@HardwareVersion", meters.HardwareVersion);
+                        cmd.Parameters.AddWithValue("@DateOfProduction", meters.DateOfSupply);
+                        cmd.Parameters.AddWithValue("@Partners", meters.Partners);
+                        cmd.Parameters.AddWithValue("@SGC", meters.SGC);
+                        cmd.Parameters.AddWithValue("@TarriffIndex", meters.TarrifIndex);
+                        if (con.State != System.Data.ConnectionState.Open)
 
-                        con.Open();
-                    cmd.ExecuteNonQuery();
+                            con.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    con.Close();
                 }
-
-                con.Close();
+                TempData["save"] = "Details Updated Successfully";
+                return RedirectToAction("MeterProduced");
             }
-            TempData["save"] = "Details Updated Successfully";
-            return RedirectToAction("MeterProduced");
+            catch(Exception ex)
+            {
+                TempData["delete"] = "Update Failed";
+                return View();
+            }
+            
         }
         public ActionResult DeleteProducedMeter(int Id)
         {
@@ -478,31 +496,40 @@ namespace MojecStockERP.Controllers
         [HttpPost]
         public ActionResult UpdateRecievedMeters(StoredMeters meters)
         {
-            using (SqlConnection con = new SqlConnection(StoreConnection.GetConnection()))
+            try
             {
-                using (SqlCommand cmd = new SqlCommand("UpdateStoreRecievedTbl", con))
+                using (SqlConnection con = new SqlConnection(StoreConnection.GetConnection()))
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@MeterID", meters.MeterID);
-                    cmd.Parameters.AddWithValue("@MeterNo", meters.MeterNo);
-                    cmd.Parameters.AddWithValue("@MeterType", meters.MeterType);
-                    cmd.Parameters.AddWithValue("@Model", meters.Model);
-                    cmd.Parameters.AddWithValue("@SoftwareVersion", meters.SoftwareVersion);
-                    cmd.Parameters.AddWithValue("@HardwareVersion", meters.HardwareVersion);
-                    cmd.Parameters.AddWithValue("@Date", meters.Date);
-                    cmd.Parameters.AddWithValue("@Partners", meters.Partners);
-                    cmd.Parameters.AddWithValue("@SGC", meters.SGC);
-                    cmd.Parameters.AddWithValue("@TarriffIndex", meters.TarrifIndex);
-                    if (con.State != System.Data.ConnectionState.Open)
+                    using (SqlCommand cmd = new SqlCommand("UpdateStoreRecievedTbl", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@MeterID", meters.MeterID);
+                        cmd.Parameters.AddWithValue("@MeterNo", meters.MeterNo);
+                        cmd.Parameters.AddWithValue("@MeterType", meters.MeterType);
+                        cmd.Parameters.AddWithValue("@Model", meters.Model);
+                        cmd.Parameters.AddWithValue("@SoftwareVersion", meters.SoftwareVersion);
+                        cmd.Parameters.AddWithValue("@HardwareVersion", meters.HardwareVersion);
+                        cmd.Parameters.AddWithValue("@Date", meters.Date);
+                        cmd.Parameters.AddWithValue("@Partners", meters.Partners);
+                        cmd.Parameters.AddWithValue("@SGC", meters.SGC);
+                        cmd.Parameters.AddWithValue("@TarriffIndex", meters.TarrifIndex);
+                        if (con.State != System.Data.ConnectionState.Open)
 
-                        con.Open();
-                    cmd.ExecuteNonQuery();
+                            con.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    con.Close();
                 }
-
-                con.Close();
+                TempData["save"] = "Details Updated Successfully";
+                return RedirectToAction("StoredMeters");
             }
-            TempData["save"] = "Details Updated Successfully";
-            return RedirectToAction("StoredMeters");
+            catch(Exception ex)
+            {
+                TempData["delete"] = "Details Deleted Successfully";
+                return View();
+            }
+           
         }
         public ActionResult DeleteStoredMeters(int Id)
         {
@@ -602,31 +629,40 @@ namespace MojecStockERP.Controllers
         [HttpPost]
         public ActionResult UpdateMetersDispatched(MetersDispatched meters)
         {
-            using (SqlConnection con = new SqlConnection(StoreConnection.GetConnection()))
+            try
             {
-                using (SqlCommand cmd = new SqlCommand("UpdateDispatchedTbl", con))
+                using (SqlConnection con = new SqlConnection(StoreConnection.GetConnection()))
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@MeterID", meters.MeterID);
-                    cmd.Parameters.AddWithValue("@MeterNo", meters.MeterNo);
-                    cmd.Parameters.AddWithValue("@MeterType", meters.MeterType);
-                    cmd.Parameters.AddWithValue("@Model", meters.Model);
-                    cmd.Parameters.AddWithValue("@SoftwareVersion", meters.SoftwareVersion);
-                    cmd.Parameters.AddWithValue("@HardwareVersion", meters.HardwareVersion);
-                    cmd.Parameters.AddWithValue("@DateofDispatched", meters.DateOfDispatch);
-                    cmd.Parameters.AddWithValue("@Partners", meters.Partners);
-                    cmd.Parameters.AddWithValue("@SGC", meters.SGC);
-                    cmd.Parameters.AddWithValue("@TarriffIndex", meters.TarrifIndex);
-                    if (con.State != System.Data.ConnectionState.Open)
+                    using (SqlCommand cmd = new SqlCommand("UpdateDispatchedTbl", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@MeterID", meters.MeterID);
+                        cmd.Parameters.AddWithValue("@MeterNo", meters.MeterNo);
+                        cmd.Parameters.AddWithValue("@MeterType", meters.MeterType);
+                        cmd.Parameters.AddWithValue("@Model", meters.Model);
+                        cmd.Parameters.AddWithValue("@SoftwareVersion", meters.SoftwareVersion);
+                        cmd.Parameters.AddWithValue("@HardwareVersion", meters.HardwareVersion);
+                        cmd.Parameters.AddWithValue("@DateofDispatched", meters.DateOfDispatch);
+                        cmd.Parameters.AddWithValue("@Partners", meters.Partners);
+                        cmd.Parameters.AddWithValue("@SGC", meters.SGC);
+                        cmd.Parameters.AddWithValue("@TarriffIndex", meters.TarrifIndex);
+                        if (con.State != System.Data.ConnectionState.Open)
 
-                        con.Open();
-                    cmd.ExecuteNonQuery();
+                            con.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    con.Close();
                 }
-
-                con.Close();
+                TempData["save"] = "Details Updated Successfully";
+                return RedirectToAction("MeterDispatched");
             }
-            TempData["save"] = "Details Updated Successfully";
-            return RedirectToAction("MeterDispatched");
+            catch(Exception ex)
+            {
+                TempData["delete"] = "Failed to update details";
+                return View();
+            }
+           
         }
         public ActionResult ActivateUsers(int Id)
         {
