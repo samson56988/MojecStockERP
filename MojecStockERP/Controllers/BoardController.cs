@@ -21,6 +21,17 @@ namespace MojecStockERP.Controllers
             return View();
         }
 
+        public ActionResult Dashboard2()
+        {
+            string Username = (string)Session["Username"];
+
+            if (string.IsNullOrEmpty(Convert.ToString(Session["Username"])))
+            {
+                return RedirectToAction("Login", "Authentication");
+            }
+
+            return View();
+        }
        
     }
 }

@@ -17,7 +17,7 @@
         </div>
         <div class="card-body">
 
-            @using (Html.BeginForm("DownloadReport", "MOJECIE", FormMethod.Post))
+            @*@using (Html.BeginForm("DownloadReport", "MOJECIE", FormMethod.Post))
             {
                 <div class="form-row mt-4">
                     <div class="col-md-3 mb-3">
@@ -38,7 +38,7 @@
                     </div>
                 </div>
 
-            }
+            }*@
 
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -53,7 +53,9 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.Disco)
                             </th>
-
+                            <th>
+                                @Html.DisplayNameFor(model => model.BU)
+                            </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.DateInstalled)
                             </th>
@@ -62,25 +64,28 @@
                     </thead>
                     @foreach (var item in Model)
                     {
-                        <tr>
+                <tr>
 
-                            <td>
-                                @Html.DisplayFor(modelItem => item.MeterNo)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.MeterType)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Disco)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.DateInstalled)
-                            </td>
-                            <td class="btn-group">
-                                @Html.ActionLink("Edit", "UpdateInstallation", new { id = item.MeterNo }, new { @class = "btn btn-primary" })
-                                @Html.ActionLink("Delete", "DeleteInstallation", new { id = item.MeterNo }, new { @class = "btn btn-danger" })
-                            </td>
-                        </tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MeterNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MeterType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Disco)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BU)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateInstalled)
+                    </td>
+                    <td class="btn-group">
+                        @Html.ActionLink("Edit", "UpdateInstallation", new { id = item.MeterNo }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Delete", "DeleteInstallation", new { id = item.MeterNo }, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
                     }
 
                 </table>

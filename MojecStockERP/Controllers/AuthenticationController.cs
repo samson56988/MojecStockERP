@@ -77,6 +77,18 @@ namespace MojecStockERP.Controllers
                     Session["Username"] = login.Username.ToString();
                     return RedirectToAction("Dashboard", "Board");
                 }
+                if (login.Role == "Procurement")
+                {
+                    FormsAuthentication.SetAuthCookie(login.Username, true);
+                    Session["Username"] = login.Username.ToString();
+                    return RedirectToAction("AddMeterProcurement", "Procurement");
+                }
+                if(login.Role == "Plastic")
+                {
+                    FormsAuthentication.SetAuthCookie(login.Username, true);
+                    Session["Username"] = login.Username.ToString();
+                    return RedirectToAction("AddPlasticProduction", "Plastic");
+                }
             }
             else
             {

@@ -1,0 +1,46 @@
+﻿@model MojecStockERP.Models.Chemicals
+@{
+    ViewBag.Title = "UpdateChemical";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-4 text-gray-800">Chemical</h1>
+
+    <div class="row">
+
+        <div class="col-lg-12">
+
+            <!-- Circle Buttons -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Chemical</h6>
+                </div>
+                <form class="needs-validation" novalidate="" action="AddModel" method="post">
+                    <div class="card-body">
+
+                        <div class="form-row">
+                            <div class="col-md-4 mb-3">
+                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            @Html.HiddenFor(model => model.Id)
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-icon-split">
+                            <span class="icon text-white-50">
+                            </span>
+                            <span class="text">Update</span>
+                        </button>
+
+                    </div>
+                </form>
+            </div>
+            <!-- Brand Buttons -->
+        </div>
+    </div>
+
+</div>
+

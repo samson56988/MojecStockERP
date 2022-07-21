@@ -35,7 +35,7 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="@Url.Action("Admin", "Admin")">
                 <div class="sidebar-brand-icon">
-                    <img src="https://mojectimeline.herokuapp.com/pics/mojec_logo.png" style="color:white;width:60px" alt="logo">
+                    <img src="https://mojecmeters.com/content/821643745d62ce3d7135613e5e603c45.svg" style="color:white;width:60px" alt="logo">
                 </div>
                 <div class="sidebar-brand-text mx-3">SMS</div>
             </a>
@@ -112,19 +112,45 @@
                     </div>
                 </div>
             </li>
-            @*<li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse4"
-                   aria-expanded="true" aria-controls="collapse4">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Platic</span>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse5"
+                   aria-expanded="true" aria-controls="collapse5">
+                    <i class="fa-solid fa-warehouse"></i>
+                    <span>Procurement</span>
                 </a>
-                <div id="collapse4" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapse5" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="@Url.Action("StoredMeters", "Admin")">Plastic Produced</a>
-                        <a class="collapse-item" href="@Url.Action("MeterProduction", "Admin")">Dispatched Meters</a>
+                        <a class="collapse-item" href="@Url.Action("ProcurementMeter", "Admin")">Meters Ordered</a>
+                        <a class="collapse-item" href="@Url.Action("PlasticOrder", "Admin")">Plastic Ordered</a>
                     </div>
                 </div>
-            </li>*@
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse5"
+                   aria-expanded="true" aria-controls="collapse5">
+                    <i class="fa-solid fa-warehouse"></i>
+                    <span>Configuration</span>
+                </a>
+                <div id="collapse5" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="@Url.Action("ProcurementMeter", "Admin")"></a>
+                        <a class="collapse-item" href="@Url.Action("PlasticOrder", "Admin")">Plastic Ordered</a>
+                    </div>
+                </div>
+            </li>
+            @*<li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse4"
+               aria-expanded="true" aria-controls="collapse4">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Platic</span>
+            </a>
+            <div id="collapse4" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="@Url.Action("StoredMeters", "Admin")">Plastic Produced</a>
+                    <a class="collapse-item" href="@Url.Action("MeterProduction", "Admin")">Dispatched Meters</a>
+                </div>
+            </div>
+        </li>*@
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <!-- Divider -->

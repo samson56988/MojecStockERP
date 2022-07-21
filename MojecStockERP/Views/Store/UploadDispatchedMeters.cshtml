@@ -28,11 +28,25 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-primary btn-icon-split">
-                            <span class="icon text-white-50">
-                            </span>
-                            <span class="text">Upload</span>
-                        </button>
+                        <div class="form-row">
+
+                            <div class="col-md-1 mb-1">
+                                <button type="submit" class="btn btn-primary btn-icon-split">
+                                    <span class="icon text-white-50">
+                                    </span>
+                                    <span class="text">Upload</span>
+                                </button>
+                            </div>
+                            <br />
+
+                            <div class="col-md-4 mb-3">
+                                <a href="@Url.Action("DownloadFile", "Store")" class="btn btn-primary btn-icon-split">
+                                    <span class="icon text-white-50">
+                                    </span>
+                                    <span class="text">Download Template</span>
+                                </a>
+                            </div>
+                        </div>
 
                     </div>
                 </form>

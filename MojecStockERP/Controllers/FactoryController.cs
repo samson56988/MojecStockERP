@@ -23,7 +23,6 @@ namespace MojecStockERP.Controllers
             string constr = string.Format(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=""Excel 12.0 Xml;HDR=YES;""", FilePath);
             Econ = new OleDbConnection(constr);
         }
-
         public ActionResult FactoryDashboard()
         {
             string Username = (string)Session["Username"];
@@ -52,7 +51,6 @@ namespace MojecStockERP.Controllers
             }
             return View();
         }
-
         [HttpPost]
         public ActionResult UploadMetersProduced(HttpPostedFileBase file)
         {
@@ -97,7 +95,6 @@ namespace MojecStockERP.Controllers
 
             return View();
         }
-
         public ActionResult MetersProduced()
         {
             string Username = (string)Session["Username"];
@@ -128,6 +125,44 @@ namespace MojecStockERP.Controllers
                 rdr.Close();
             }
             return View(_produced);
+        }
+        public FileResult DownloadFile(int? fileId)
+        {
+            fileId = 1;
+            Files model = PopulateProductionFiles().Find(x => x.Id == Convert.ToInt32(fileId));
+            string fileName = model.Name;
+            string contentType = model.ContentType;
+            byte[] bytes = model.Data;
+            return File(bytes, contentType, fileName);
+        }
+        private static List<Files> PopulateProductionFiles()
+        {
+            List<Files> files = new List<Files>();
+            using (SqlConnection con = new SqlConnection(StoreConnection.GetConnection()))
+            {
+
+                using (SqlCommand cmd = new SqlCommand("Select * from ProductionTemplate", con))
+                {
+                    cmd.Connection = con;
+                    con.Open();
+                    using (SqlDataReader sdr = cmd.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            files.Add(new Files
+                            {
+                                Id = Convert.ToInt32(sdr["Id"]),
+                                Name = sdr["Name"].ToString(),
+                                ContentType = sdr["ContentType"].ToString(),
+                                Data = (byte[])sdr["Data"]
+                            });
+                        }
+                    }
+                    con.Close();
+                }
+            }
+
+            return files;
         }
     }
 }

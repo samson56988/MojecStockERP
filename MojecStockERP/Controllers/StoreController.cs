@@ -185,7 +185,6 @@ namespace MojecStockERP.Controllers
 
             return View();
         }
-
         public ActionResult DispatchedMeters()
         {
             string Username = (string)Session["Username"];
@@ -215,6 +214,82 @@ namespace MojecStockERP.Controllers
                 rdr.Close();
             }
             return View(_dispatched);
+        }
+        public FileResult DownloadFile(int? fileId)
+        {
+            fileId = 1;
+            Files model = PopulateDispatchFiles().Find(x => x.Id == Convert.ToInt32(fileId));
+            string fileName = model.Name;
+            string contentType = model.ContentType;
+            byte[] bytes = model.Data;
+            return File(bytes, contentType, fileName);
+        }
+        private static List<Files> PopulateDispatchFiles()
+        {
+            List<Files> files = new List<Files>();
+            using (SqlConnection con = new SqlConnection(StoreConnection.GetConnection()))
+            {
+
+                using (SqlCommand cmd = new SqlCommand("Select * from DispatchTemplate", con))
+                {
+                    cmd.Connection = con;
+                    con.Open();
+                    using (SqlDataReader sdr = cmd.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            files.Add(new Files
+                            {
+                                Id = Convert.ToInt32(sdr["Id"]),
+                                Name = sdr["Name"].ToString(),
+                                ContentType = sdr["ContentType"].ToString(),
+                                Data = (byte[])sdr["Data"]
+                            });
+                        }
+                    }
+                    con.Close();
+                }
+            }
+
+            return files;
+        }
+        public FileResult DownloadFilerecieved(int? fileId)
+        {
+            fileId = 1;
+            Files model = PopulaterecievedFiles().Find(x => x.Id == Convert.ToInt32(fileId));
+            string fileName = model.Name;
+            string contentType = model.ContentType;
+            byte[] bytes = model.Data;
+            return File(bytes, contentType, fileName);
+        }
+        private static List<Files> PopulaterecievedFiles()
+        {
+            List<Files> files = new List<Files>();
+            using (SqlConnection con = new SqlConnection(StoreConnection.GetConnection()))
+            {
+
+                using (SqlCommand cmd = new SqlCommand("Select * from RecievedGoodsTemplate", con))
+                {
+                    cmd.Connection = con;
+                    con.Open();
+                    using (SqlDataReader sdr = cmd.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            files.Add(new Files
+                            {
+                                Id = Convert.ToInt32(sdr["Id"]),
+                                Name = sdr["Name"].ToString(),
+                                ContentType = sdr["ContentType"].ToString(),
+                                Data = (byte[])sdr["Data"]
+                            });
+                        }
+                    }
+                    con.Close();
+                }
+            }
+
+            return files;
         }
     }
 }

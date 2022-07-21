@@ -18,6 +18,7 @@ namespace MojecStockERP.Controllers
         List<Installation> _installation = new List<Installation>();
         List<MetersDispatched> _dispatchedMeters = new List<MetersDispatched>();
         List<MetersProduced> _producedMeters = new List<MetersProduced>();
+        List<MeterOrder> _orders = new List<MeterOrder>();
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["StockManagementERP"].ConnectionString);
         // GET: Meters
 
@@ -157,6 +158,38 @@ namespace MojecStockERP.Controllers
             }
             return View(_producedMeters);
         }
+
+        public ActionResult MeterProcured()
+        {
+            //string Username = (string)Session["Username"];
+
+            //if (string.IsNullOrEmpty(Convert.ToString(Session["Username"])))
+            //{
+            //    return RedirectToAction("Login", "Authentication");
+            //}
+            _orders = new List<MeterOrder>();
+            using (SqlConnection con = new SqlConnection(StoreConnection.GetConnection()))
+            {
+                SqlCommand cmd = new SqlCommand("select * from MeterProcurement_Tbl", con);
+                cmd.CommandType = System.Data.CommandType.Text;
+                con.Open();
+                SqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    MetersProduced produced = new MetersProduced();
+                    produced.MeterNo = rdr["MeterType"].ToString();
+                    produced.MeterType = rdr["Model"].ToString();
+                    produced.Model = rdr["Partners"].ToString();
+                    produced.SGC = rdr["Quantity"].ToString();
+                    produced.DateOfSupply = rdr["BillofLaden"].ToString();
+                    produced.Partners = rdr["Date"].ToString();
+                    _producedMeters.Add(produced);
+                }
+                rdr.Close();
+            }
+            return View(_producedMeters);
+        }
+
         public ActionResult MeterDispatched()
         {
             string Username = (string)Session["Username"];

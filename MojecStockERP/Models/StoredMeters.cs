@@ -9,21 +9,31 @@ namespace MojecStockERP.Models
     public class StoredMeters
     {
         public int MeterID { get; set; }
+        [Required(ErrorMessage = "Please enter Details")]
         [Display(Name = "Meter No")]
         public string MeterNo { get; set; }
+        [Required(ErrorMessage = "Please enter Details")]
         [Display(Name = "Meter Type")]
         public string MeterType { get; set; }
         [Display(Name = "Model")]
+        [Required(ErrorMessage = "Please enter Details")]
         public string Model { get; set; }
+        [Required(ErrorMessage = "Please enter Details")]
         [Display(Name = "Software Version")]
         public string SoftwareVersion { get; set; }
+        [Required(ErrorMessage = "Please enter Details")]
         [Display(Name = "Hardware Version")]
         public string HardwareVersion { get; set; }
+        [Required(ErrorMessage = "Please enter Details")]
         [Display(Name = "Partners")]
         public string Partners { get; set; }
+        [Required(ErrorMessage = "Please enter Details")]
         public string Disco { get; set; }
+        [Required(ErrorMessage = "Please enter Details")]
         public string SGC { get; set; }
+        [Required(ErrorMessage = "Please enter Details")]
         public string TarrifIndex { get; set; }
+        [Required(ErrorMessage = "Please enter Details")]
         public string Date { get; set; }
     }
 }

@@ -33,10 +33,10 @@
                             </div>
                             <div class="col-md-4 mb-3">
                                 <label for="validationCustom01">Date Installed</label>
-                                @Html.EditorFor(model => model.DateInstalled, new { htmlAttributes = new { @class = "form-control",@type="date" } })
+                                @Html.EditorFor(model => model.DateInstalled, new { htmlAttributes = new { @class = "form-control", @type = "date", required = "required" } })
                             </div>
 
-                            
+
                         </div>
 
                         <button type="submit" class="btn btn-primary btn-icon-split">
@@ -50,7 +50,7 @@
             </div>
 
 
-            
+
 
             <!-- Brand Buttons -->
 
