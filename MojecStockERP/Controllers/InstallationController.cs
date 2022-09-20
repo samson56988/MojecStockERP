@@ -112,7 +112,7 @@ namespace MojecStockERP.Controllers
                     RecommendedMeterType = dr[13].ToString();
                     AdditionalComment = dr[14].ToString();
                     Disco = dr[15].ToString();
-                    SqlConnection con = new SqlConnection("Data Source=mojecserver.database.windows.net;Initial Catalog=StockManagementSystemMojec;User ID=mojec;Password=Admin123;");
+                    SqlConnection con = new SqlConnection("Data Source=77.68.103.104;Initial Catalog=mojecdashboard;Persist Security Info=True;User ID=mojecadmin;Password=Admin123;");
                     con.Open();
                     string Disconame = (string)Session["Disco"];
                     if (Disco != Disconame)
@@ -242,7 +242,7 @@ namespace MojecStockERP.Controllers
                 DateInstalled = dr[2].ToString();
                 Disco = dr[3].ToString();
                 BU = dr[4].ToString();
-                SqlConnection con = new SqlConnection("Data Source=mojecserver.database.windows.net;Initial Catalog=StockManagementSystemMojec;User ID=mojec;Password=Admin123;");
+                SqlConnection con = new SqlConnection("Data Source=77.68.103.104;Initial Catalog=mojecdashboard;Persist Security Info=True;User ID=mojecadmin;Password=Admin123;");
                 con.Open();
                 //MySqlCommand cmddelete = new MySqlCommand("truncate table duplicate",con);
                 //cmddelete.ExecuteNonQuery();
@@ -251,14 +251,18 @@ namespace MojecStockERP.Controllers
                    TempData["delete"] = "Sorry Input your correct Disco name into the Template";
                         return View();
                 }
-                    SqlCommand icmmd = new SqlCommand("INSERT INTO Installation_Tbl(MeterNo,MeterType,Disco,DateInstalled,BU)VALUES(@MeterNo,@MeterType,@Disco,@DateInstalled,@BU)", con);
-                    icmmd.Parameters.AddWithValue("@MeterNo", MeterNo);
-                    icmmd.Parameters.AddWithValue("@MeterType",MeterType );
-                    icmmd.Parameters.AddWithValue("@Disco", Disco);
-                    icmmd.Parameters.AddWithValue("@DateInstalled", DateInstalled);
-                    icmmd.Parameters.AddWithValue("@BU", BU);
-                    icmmd.ExecuteNonQuery();
-                    ViewBag.Result = "Data Imported Successfully";
+                else
+                {
+                        SqlCommand icmmd = new SqlCommand("INSERT INTO Installation_Tbl(MeterNo,MeterType,Disco,DateInstalled,BU)VALUES(@MeterNo,@MeterType,@Disco,@DateInstalled,@BU)", con);
+                        icmmd.Parameters.AddWithValue("@MeterNo", MeterNo);
+                        icmmd.Parameters.AddWithValue("@MeterType", MeterType);
+                        icmmd.Parameters.AddWithValue("@Disco", Disco);
+                        icmmd.Parameters.AddWithValue("@DateInstalled", DateInstalled);
+                        icmmd.Parameters.AddWithValue("@BU", BU);
+                        icmmd.ExecuteNonQuery();
+                        ViewBag.Result = "Data Imported Successfully";
+                }
+                   
                 }
                 con.Close();
                 TempData["save"] = "Upload Successful";

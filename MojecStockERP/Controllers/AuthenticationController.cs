@@ -18,7 +18,7 @@ namespace MojecStockERP.Controllers
 
         void connectionString()
         {
-            con.ConnectionString = "Data Source=mojecserver.database.windows.net;Initial Catalog=StockManagementSystemMojec;User ID=mojec;Password=Admin123";
+            con.ConnectionString = "Data Source=77.68.103.104;Initial Catalog=mojecdashboard;Persist Security Info=True;User ID=mojecadmin;Password=Admin123";
         }
         // GET: Authentication
         public ActionResult Login()
